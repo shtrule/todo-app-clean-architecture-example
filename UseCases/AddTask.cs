@@ -21,12 +21,12 @@ public class AddTask
 
         if (string.IsNullOrWhiteSpace(request.Title))
         {
-            return new AddRequestResult.Fail("You are trying to add a task without a title.");
+            return AddRequestResult.Fail("You are trying to add a task without a title.");
         }
 
         if (request.DueDate <= now)
         {
-            return new AddRequestResult.Fail("You are trying to add a task with a due date in the past.");
+            return AddRequestResult.Fail("You are trying to add a task with a due date in the past.");
         }
 
         var task = new TodoTask(request.Title, request.DueDate);
@@ -37,15 +37,28 @@ public class AddTask
 
 public interface IClock
 {
+    DateTimeOffset OffsetNow { get; }
 }
 
 public interface ITaskRepository
 {
+    void Add(TodoTask task);
 }
 
 public class AddTaskRequest
 {
+    public string? Title { get; set; }
+    public DateTimeOffset DueDate { get; set; }
 }
 
 public interface IAddRequestResult {
+}
+
+public static class AddRequestResult {
+    public static IAddRequestResult Success(TodoTask task) {
+        throw new NotImplementedException();
+    }
+    public static IAddRequestResult Fail(string description) {
+        throw new NotImplementedException();
+    }
 }
