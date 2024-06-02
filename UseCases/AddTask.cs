@@ -1,4 +1,6 @@
-﻿namespace UseCases;
+﻿using Domain;
+
+namespace UseCases;
 
 public class AddTask
 {
@@ -43,4 +45,7 @@ public interface ITaskRepository
 
 public class AddTaskRequest
 {
+}
+
+public interface IAddRequestResult {
 }
